@@ -1,35 +1,25 @@
-const endpoint = 'https://flynn.boolean.careers/exercises/api/random/mail'
+// salvare in una variabile api email boolean
+const endpoint = 'https://flynn.boolean.careers/exercises/api/random/mail';
 
+// fare un ciclo for per generare 10 email randomiche
+for (let i = 0; i < 10; i++) {
 
+// chiamata api
 axios.get(endpoint)
     .then((response) => {
-        console.log(response)
-
+        // salvare in una variabile l'oggetto data 
         const emails = response.data;
-        console.log(emails);
-        
+        // salvare in una variabile l'email 
         const email = emails.response;
-        console.log(email);
-
+        // salvare in una variabile l'elemento ul html
         const ulElement = document.querySelector('.list');
-
-        console.log(ulElement)
-
-        let emailList = '';
-
-        for (let i = 0; i < 10; i++) {
-                
-            emailList += `<li>${email}</li>`
-        
-        }
-
-        ulElement.innerHTML = emailList;
-        
-        
-
+       // appendere ad ul l'elemento li con l'email randomica
+        ulElement.innerHTML += `<li>${email}</li>`
+     
     })
     .catch(error => {
         console.log(error);
     })
 
+}
 
